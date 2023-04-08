@@ -60,3 +60,4 @@ popen-fortran = { git="https://github.com/jacobwilliams/popen-fortran.git", tag 
 ### See also
  * [Fortran & C Interoperability](https://degenerateconic.com/fortran-c-interoperability.html) [degenerateconic.com] (2014)
  * [C interop to popen](https://groups.google.com/forum/#!topic/comp.lang.fortran/gRmQZgcMkaY), comp.lang.fortran, 12/2/2009.
+ * [M_process](https://github.com/urbanjost/M_process) Read or write to a process from Fortran via a C wrapper
