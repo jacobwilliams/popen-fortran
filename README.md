@@ -1,3 +1,6 @@
+![popen-fortran](media/logo.png)
+============
+
 Simple Fortran module for `popen`.
 
 [![GitHub release](https://img.shields.io/github/release/jacobwilliams/popen-fortran.svg?style=plastic)](https://github.com/jacobwilliams/popen-fortran/releases/latest)
