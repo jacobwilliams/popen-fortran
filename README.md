@@ -4,6 +4,24 @@ Simple Fortran module for `popen`.
 [![Build Status](https://github.com/jacobwilliams/popen-fortran/actions/workflows/CI.yml/badge.svg)](https://github.com/jacobwilliams/popen-fortran/actions)
 [![codecov](https://codecov.io/gh/jacobwilliams/popen-fortran/branch/master/graph/badge.svg?token=BHtd51oUTE)](https://codecov.io/gh/jacobwilliams/popen-fortran)
 
+### Example
+
+The library provides a routine `get_command_as_string` which can be used like so:
+
+```fortran
+program main
+
+  use popen_module, only: get_command_as_string
+
+  implicit none
+  character(len=:),allocatable :: res
+
+  res = get_command_as_string('ls -l')
+
+  write(*,'(A)') res
+
+end program main
+```
 
 ### Documentation
 The latest API documentation can be found [here](https://jacobwilliams.github.io/popen-fortran/). This was generated from the source code using [FORD](https://github.com/Fortran-FOSS-Programmers/ford) (i.e. by running `ford ford.md`).
