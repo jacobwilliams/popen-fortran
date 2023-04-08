@@ -10,17 +10,22 @@
 
     private
 
+    ! interfaces to C functions
     interface
 
         function popen(command, mode) bind(C,name='popen')
+        !! initiate pipe streams to or from a process
         import :: c_char, c_ptr
+        implicit none
         character(kind=c_char),dimension(*) :: command
         character(kind=c_char),dimension(*) :: mode
         type(c_ptr) :: popen
         end function popen
 
         function fgets(s, siz, stream) bind(C,name='fgets')
+        !! get a string from a stream
         import :: c_char, c_ptr, c_int
+        implicit none
         type (c_ptr) :: fgets
         character(kind=c_char),dimension(*) :: s
         integer(kind=c_int),value :: siz
@@ -28,7 +33,9 @@
         end function fgets
 
         function pclose(stream) bind(C,name='pclose')
+        !! close a pipe stream to or from a process
         import :: c_ptr, c_int
+        implicit none
         integer(c_int) :: pclose
         type(c_ptr),value :: stream
         end function pclose
@@ -41,14 +48,12 @@ contains
 
     !*******************************************************************************
     !>
-    !  Convert a C string to a Fortran string
+    !  Convert a C string to a Fortran string.
 
     function c2f_string(c) result(f)
 
-        implicit none
-
-        character(len=*),intent(in) :: c
-        character(len=:),allocatable :: f
+        character(len=*),intent(in) :: c !! C string
+        character(len=:),allocatable :: f !! Fortran string
 
         integer :: i
 
@@ -66,20 +71,18 @@ contains
 
     !*******************************************************************************
     !>
-    !  Return the result of the command as a string
+    !  Return the result of the command as a string.
 
     function get_command_as_string(command) result(str)
 
-        implicit none
+        character(len=*),intent(in) :: command !! the command to run
+        character(len=:),allocatable :: str !! the result of that command
 
-        character(len=*),intent(in) :: command
-        character(len=:),allocatable :: str
+        integer,parameter :: buffer_length = 1000 !! read stream in chunks of this size
 
-        integer,parameter :: buffer_length = 1000
-
-        type(c_ptr) :: h
-        integer(c_int) :: istat
-        character(kind=c_char,len=buffer_length) :: line
+        type(c_ptr) :: h !! for `popen`
+        integer(c_int) :: istat !! `pclose` status
+        character(kind=c_char,len=buffer_length) :: line !! buffer to read from `fgets`
 
         str = ''
         h = c_null_ptr
