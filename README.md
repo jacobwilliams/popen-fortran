@@ -3,9 +3,10 @@
 
 Simple Fortran module for `popen`.
 
+[![Language](https://img.shields.io/badge/-Fortran-734f96?logo=fortran&logoColor=white)](https://github.com/topics/fortran)
 [![GitHub release](https://img.shields.io/github/release/jacobwilliams/popen-fortran.svg?style=plastic)](https://github.com/jacobwilliams/popen-fortran/releases/latest)
 [![Build Status](https://github.com/jacobwilliams/popen-fortran/actions/workflows/CI.yml/badge.svg)](https://github.com/jacobwilliams/popen-fortran/actions)
-[![codecov](https://codecov.io/gh/jacobwilliams/popen-fortran/branch/master/graph/badge.svg?token=BHtd51oUTE)](https://codecov.io/gh/jacobwilliams/popen-fortran)
+<!-- [![codecov](https://codecov.io/gh/jacobwilliams/popen-fortran/branch/master/graph/badge.svg?token=BHtd51oUTE)](https://codecov.io/gh/jacobwilliams/popen-fortran) -->
 
 ### Example
 
