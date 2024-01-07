@@ -1,3 +1,5 @@
+<!-- -*- mode: jinja2 -*- -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,73 +12,50 @@
 
     <title>get_command_as_string &ndash; popen-fortran</title>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
       <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-         <script src="../js/jquery-2.1.3.min.js"></script>
-         <script src="../js/svg-pan-zoom.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
           <a class="navbar-brand" href="../index.html">popen-fortran </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
-              <a href="#" class="dropdown-toggle"
-                 data-toggle="dropdown" role="button"
-                 aria-haspopup="true"
-                 aria-expanded="false">
-                 Contents <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                    <li><a href="../sourcefile/popen_module.f90.html">Source File</a></li>
-                  <li><a href="../lists/modules.html">Modules</a></li>
-                  <li><a href="../lists/procedures.html">Procedures</a></li>
-              </ul>
-            </li>
-                <li class="visible-xs hidden-sm visible-lg">
-                  <a href="../lists/files.html">Source Files</a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="sourcefile/popen_module.f90.html">Source File</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
                 </li>
-              <li class="visible-xs hidden-sm visible-lg">
-                <a href="../lists/modules.html">Modules</a>
-              </li>
-              <li class="visible-xs hidden-sm visible-lg">
-                <a href="../lists/procedures.html">Procedures</a>
-              </li>
-          </ul>
-            <form action="../search.html" class="navbar-form navbar-right" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
               </div>
-              <!--
-                  <button type="submit" class="btn btn-default">Submit</button>
-                  -->
-            </form>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
 
     <div class="container">
   <div class="row">
@@ -84,33 +63,37 @@
       <small>Function</small>
       
     </h1>
-      <div class="row" id="info-bar">
-    <div class="col-lg-12">
-      <div class="well well-sm">
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
         <ul class="list-inline" style="margin-bottom:0px;display:inline">
 
-          <li id="statements"><i class="fa fa-list-ol"></i>
-            <a data-toggle="tooltip"
-               data-placement="bottom" data-html="true"
-               title="17.2% of total for procedures.">17 statements</a>
-          </li>
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title="17.2% of total for procedures.">17 statements</a>
+            </li>
 
-            <li id="source-file">
+            <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
               <a href="../src/popen_module.f90"> Source File</a>
             </li>
         </ul>
-        <ol class="breadcrumb in-well text-right">
-              <li><a href='../sourcefile/popen_module.f90.html'>popen_module.f90</a></li>
-              <li><a href='../module/popen_module.html'>popen_module</a></li>
-          <li class="active">get_command_as_string</li>
-        </ol>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/popen_module.f90.html'>popen_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/popen_module.html'>popen_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">get_command_as_string</li>
+          </ol>
+        </nav>
       </div>
     </div>
   </div>
   <script>
     $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-bs-toggle="tooltip"]').tooltip()
     })
   </script>
 
@@ -139,8 +122,9 @@
   
   
   
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
       <div class="list-group">
         <a class="list-group-item" href="../proc/get_command_as_string.html#src">get_command_as_string</a>
       </div>
@@ -158,20 +142,21 @@
 
     <p>Return the result of the command as a string.</p>
 
+
     <h3>Arguments</h3>
         <table class="table table-striped varlist">
     <thead>
       <tr>
-        <th>Type</th>
-<th>Intent</th><th>Optional</th>        <th>Attributes</th>
-        <th></th>
-        <th>Name</th>
-        <th></th>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
     </thead>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-command"></span>
+              <span class="anchor" id="variable-command~2"></span>
               character(len=*),
             </td>
 <td>intent(in)</td>
@@ -195,101 +180,101 @@
       </h3>
       <p>the result of that command</p>
     <br>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-  <h3 class="panel-title">Calls</h3>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
       </div>
-      <div class="panel-body">
+      <div class="card-body">
   <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~get_command_as_string~~CallsGraph Pages: 1 -->
-<svg id="procget_command_as_stringCallsGraph" width="250pt" height="158pt"
- viewBox="0.00 0.00 250.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="procget_command_as_stringCallsGraph" width="424pt" height="158pt"
+ viewBox="0.00 0.00 424.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="proc~~get_command_as_string~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>proc~~get_command_as_string~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 246,-154 246,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 420,-154 420,4 -4,4"/>
 <!-- proc~get_command_as_string -->
 <g id="proc~~get_command_as_string~~CallsGraph_node1" class="node">
 <title>proc~get_command_as_string</title>
-<polygon fill="none" stroke="black" points="142,-87 0,-87 0,-63 142,-63 142,-87"/>
-<text text-anchor="middle" x="71" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">get_command_as_string</text>
+<polygon fill="none" stroke="black" points="229,-87 0,-87 0,-63 229,-63 229,-87"/>
+<text text-anchor="middle" x="114.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">popen_module::get_command_as_string</text>
 </g>
 <!-- interface~fgets -->
 <g id="proc~~get_command_as_string~~CallsGraph_node2" class="node">
 <title>interface~fgets</title>
-<g id="a_proc~~get_command_as_string~~CallsGraph_node2"><a xlink:href=".././interface/fgets.html" xlink:title="fgets">
-<polygon fill="#a7506f" stroke="#a7506f" points="237,-150 183,-150 183,-126 237,-126 237,-150"/>
-<text text-anchor="middle" x="210" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fgets</text>
+<g id="a_proc~~get_command_as_string~~CallsGraph_node2"><a xlink:href="../interface/fgets.html" xlink:title="popen_module::fgets">
+<polygon fill="#a7506f" stroke="#a7506f" points="403.5,-150 277.5,-150 277.5,-126 403.5,-126 403.5,-150"/>
+<text text-anchor="middle" x="340.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">popen_module::fgets</text>
 </a>
 </g>
 </g>
 <!-- proc~get_command_as_string&#45;&gt;interface~fgets -->
 <g id="proc~~get_command_as_string~~CallsGraph_edge1" class="edge">
 <title>proc~get_command_as_string&#45;&gt;interface~fgets</title>
-<path fill="none" stroke="#000000" d="M98.41,-87.15C119.74,-96.95 149.94,-110.84 173.4,-121.63"/>
-<polygon fill="#000000" stroke="#000000" points="172.12,-124.89 182.67,-125.89 175.04,-118.53 172.12,-124.89"/>
+<path fill="none" stroke="#000000" d="M158.42,-87.07C195.08,-97.38 247.93,-112.25 287.08,-123.26"/>
+<polygon fill="#000000" stroke="#000000" points="286.15,-126.63 296.72,-125.97 288.04,-119.89 286.15,-126.63"/>
 </g>
 <!-- interface~pclose -->
 <g id="proc~~get_command_as_string~~CallsGraph_node3" class="node">
 <title>interface~pclose</title>
-<g id="a_proc~~get_command_as_string~~CallsGraph_node3"><a xlink:href=".././interface/pclose.html" xlink:title="pclose">
-<polygon fill="#a7506f" stroke="#a7506f" points="237,-108 183,-108 183,-84 237,-84 237,-108"/>
-<text text-anchor="middle" x="210" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">pclose</text>
+<g id="a_proc~~get_command_as_string~~CallsGraph_node3"><a xlink:href="../interface/pclose.html" xlink:title="popen_module::pclose">
+<polygon fill="#a7506f" stroke="#a7506f" points="407.5,-108 273.5,-108 273.5,-84 407.5,-84 407.5,-108"/>
+<text text-anchor="middle" x="340.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">popen_module::pclose</text>
 </a>
 </g>
 </g>
 <!-- proc~get_command_as_string&#45;&gt;interface~pclose -->
 <g id="proc~~get_command_as_string~~CallsGraph_edge2" class="edge">
 <title>proc~get_command_as_string&#45;&gt;interface~pclose</title>
-<path fill="none" stroke="#000000" d="M142.11,-85.75C152.84,-87.39 163.52,-89.03 173.09,-90.5"/>
-<polygon fill="#000000" stroke="#000000" points="172.58,-93.96 182.99,-92.01 173.64,-87.04 172.58,-93.96"/>
+<path fill="none" stroke="#000000" d="M229.14,-85.65C240.75,-86.74 252.33,-87.83 263.4,-88.87"/>
+<polygon fill="#000000" stroke="#000000" points="263.11,-92.35 273.39,-89.8 263.76,-85.38 263.11,-92.35"/>
 </g>
 <!-- interface~popen -->
 <g id="proc~~get_command_as_string~~CallsGraph_node4" class="node">
 <title>interface~popen</title>
-<g id="a_proc~~get_command_as_string~~CallsGraph_node4"><a xlink:href=".././interface/popen.html" xlink:title="popen">
-<polygon fill="#a7506f" stroke="#a7506f" points="237,-66 183,-66 183,-42 237,-42 237,-66"/>
-<text text-anchor="middle" x="210" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">popen</text>
+<g id="a_proc~~get_command_as_string~~CallsGraph_node4"><a xlink:href="../interface/popen.html" xlink:title="popen_module::popen">
+<polygon fill="#a7506f" stroke="#a7506f" points="407,-66 274,-66 274,-42 407,-42 407,-66"/>
+<text text-anchor="middle" x="340.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">popen_module::popen</text>
 </a>
 </g>
 </g>
 <!-- proc~get_command_as_string&#45;&gt;interface~popen -->
 <g id="proc~~get_command_as_string~~CallsGraph_edge3" class="edge">
 <title>proc~get_command_as_string&#45;&gt;interface~popen</title>
-<path fill="none" stroke="#000000" d="M142.11,-64.25C152.84,-62.61 163.52,-60.97 173.09,-59.5"/>
-<polygon fill="#000000" stroke="#000000" points="173.64,-62.96 182.99,-57.99 172.58,-56.04 173.64,-62.96"/>
+<path fill="none" stroke="#000000" d="M229.14,-64.35C240.91,-63.24 252.66,-62.14 263.87,-61.09"/>
+<polygon fill="#000000" stroke="#000000" points="264.36,-64.56 273.99,-60.14 263.71,-57.59 264.36,-64.56"/>
 </g>
 <!-- proc~c2f_string -->
 <g id="proc~~get_command_as_string~~CallsGraph_node5" class="node">
 <title>proc~c2f_string</title>
-<g id="a_proc~~get_command_as_string~~CallsGraph_node5"><a xlink:href=".././proc/c2f_string.html" xlink:title="c2f_string">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="242,-24 178,-24 178,0 242,0 242,-24"/>
-<text text-anchor="middle" x="210" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">c2f_string</text>
+<g id="a_proc~~get_command_as_string~~CallsGraph_node5"><a xlink:href="../proc/c2f_string.html" xlink:title="popen_module::c2f_string">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="416,-24 265,-24 265,0 416,0 416,-24"/>
+<text text-anchor="middle" x="340.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">popen_module::c2f_string</text>
 </a>
 </g>
 </g>
 <!-- proc~get_command_as_string&#45;&gt;proc~c2f_string -->
 <g id="proc~~get_command_as_string~~CallsGraph_edge4" class="edge">
 <title>proc~get_command_as_string&#45;&gt;proc~c2f_string</title>
-<path fill="none" stroke="#000000" d="M98.41,-62.85C119.74,-53.05 149.94,-39.16 173.4,-28.37"/>
-<polygon fill="#000000" stroke="#000000" points="175.04,-31.47 182.67,-24.11 172.12,-25.11 175.04,-31.47"/>
+<path fill="none" stroke="#000000" d="M158.42,-62.93C195.08,-52.62 247.93,-37.75 287.08,-26.74"/>
+<polygon fill="#000000" stroke="#000000" points="288.04,-30.11 296.72,-24.03 286.15,-23.37 288.04,-30.11"/>
 </g>
 </g>
 </svg>
-</div>        <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-          <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                   <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              <div class="modal-body">
+                <div class="modal-body">
 <p>Nodes of different colours represent the following: </p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -297,11 +282,11 @@
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="597pt" height="32pt"
- viewBox="0.00 0.00 596.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 592.5,-28 592.5,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
 <!-- Subroutine -->
 <g id="node1" class="node">
 <title>Subroutine</title>
@@ -320,23 +305,29 @@
 <polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
 <text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
-<!-- Unknown Procedure Type -->
+<!-- Type Bound Procedure -->
 <g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
 <title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="388.5,-24 243.5,-24 243.5,0 388.5,0 388.5,-24"/>
-<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="465,-24 407,-24 407,0 465,0 465,-24"/>
-<text text-anchor="middle" x="436" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node6" class="node">
+<g id="node7" class="node">
 <title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="588.5,-24 483.5,-24 483.5,0 588.5,0 588.5,-24"/>
-<text text-anchor="middle" x="536" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
@@ -354,50 +345,19 @@ implementation in a submodule of an interface in a parent module.
     </div>
     <br>
 
-    <section class="visible-xs visible-sm hidden-md">
-        <h3>Contents</h3>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    <div class="panel panel-primary">
-      <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-      <div class="list-group">
-        <a class="list-group-item" href="../proc/get_command_as_string.html#src">get_command_as_string</a>
-      </div>
-    </div>
-
-
-    </section>
-    <br class="visible-xs visible-sm hidden-md">
-
 
     
     
 
     
     
+
 
 
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">    </span><span class="k">function </span><span class="n">get_command_as_string</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="w"></span>
+    <div class="hl codehilite"><pre><span></span><span class="w">    </span><span class="k">function </span><span class="n">get_command_as_string</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
 
 <span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="c">!! the command to run</span>
 <span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="c">!! the result of that command</span>
@@ -408,18 +368,18 @@ implementation in a submodule of an interface in a parent module.
 <span class="w">        </span><span class="kt">integer</span><span class="p">(</span><span class="kt">c_int</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">istat</span><span class="w"> </span><span class="c">!! `pclose` status</span>
 <span class="w">        </span><span class="kt">character</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">,</span><span class="nb">len</span><span class="o">=</span><span class="n">buffer_length</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="c">!! buffer to read from `fgets`</span>
 
-<span class="w">        </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
 <span class="w">        </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_null_ptr</span>
-<span class="nb">        </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">popen</span><span class="p">(</span><span class="n">command</span><span class="o">//</span><span class="nb">c_null_char</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="o">//</span><span class="nb">c_null_char</span><span class="p">)</span><span class="w"></span>
+<span class="nb">        </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">popen</span><span class="p">(</span><span class="n">command</span><span class="o">//</span><span class="nb">c_null_char</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="o">//</span><span class="nb">c_null_char</span><span class="p">)</span>
 
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">h</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            do while</span><span class="w"> </span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">buffer_length</span><span class="p">,</span><span class="n">h</span><span class="p">)))</span><span class="w"></span>
-<span class="w">                </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="o">//</span><span class="n">c2f_string</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"></span>
+<span class="k">            do while</span><span class="w"> </span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">buffer_length</span><span class="p">,</span><span class="n">h</span><span class="p">)))</span>
+<span class="w">                </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="o">//</span><span class="n">c2f_string</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="w">            </span><span class="k">end do</span>
-<span class="k">            </span><span class="n">istat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pclose</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="w"></span>
+<span class="k">            </span><span class="n">istat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pclose</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 <span class="w">        </span><span class="k">end if</span>
 
-<span class="k">    end function </span><span class="n">get_command_as_string</span><span class="w"></span>
+<span class="k">    end function </span><span class="n">get_command_as_string</span>
 </pre></div>
 
     </section>
@@ -432,12 +392,12 @@ implementation in a submodule of an interface in a parent module.
     </div> <!-- /container -->
     <footer>
       <div class="container">
-        <div class="row">
-          <div class="col-xs-6 col-md-6"><p>popen-fortran was developed by Jacob Williams<br>&copy; 2023 
+        <div class="row justify-content-between">
+          <div class="col"><p>popen-fortran was developed by Jacob Williams<br>&copy; 2024 
 </p>
           </div>
-          <div class="col-xs-6 col-md-6">
-            <p class="text-right">
+          <div class="col">
+            <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
             </p>
@@ -447,17 +407,12 @@ implementation in a submodule of an interface in a parent module.
       </div> <!-- /container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript
-         ================================================== -->
-         <!-- Placed at the end of the document so the pages load faster -->
-    <!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        -->
-        <script src="../js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
 
-        <!-- MathJax JavaScript
+    <!-- MathJax JavaScript
              ================================================== -->
              <!-- Placed at the end of the document so the pages load faster -->
         <script type="text/x-mathjax-config">
