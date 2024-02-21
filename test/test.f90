@@ -6,10 +6,20 @@ implicit none
 
 character(len=:),allocatable :: res
 
-res = get_command_as_string('uname')
+#ifdef _WIN32
+    res = get_command_as_string('ver')
+#else
+    res = get_command_as_string('uname')
+#endif
+
 write(*,'(A)') res
 
-res = get_command_as_string('ls -l')
+#ifdef _WIN32
+    res = get_command_as_string('dir')
+#else
+    res = get_command_as_string('ls -l')
+#endif
+
 write(*,'(A)') res
 
 end program test

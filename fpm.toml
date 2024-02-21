@@ -11,6 +11,10 @@ auto-executables = true
 auto-examples = true
 auto-tests = true
 
+[preprocess]
+cpp.suffixes = ["F90", "f90"]
+# cpp.macros = ["_WIN32"]
+
 [library]
 source-dir = "src"
 

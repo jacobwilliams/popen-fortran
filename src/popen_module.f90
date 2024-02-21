@@ -13,7 +13,12 @@
     ! interfaces to C functions
     interface
 
-        function popen(command, mode) bind(C,name='popen')
+        function popen(command, mode) &
+#ifdef _WIN32
+            bind(C,name='_popen')
+#else
+            bind(C,name='popen')
+#endif
         !! initiate pipe streams to or from a process
         import :: c_char, c_ptr
         implicit none
@@ -22,7 +27,12 @@
         type(c_ptr) :: popen
         end function popen
 
-        function fgets(s, siz, stream) bind(C,name='fgets')
+        function fgets(s, siz, stream) &
+#ifdef _WIN32
+            bind(C,name='fgets')
+#else
+            bind(C,name='fgets')
+#endif
         !! get a string from a stream
         import :: c_char, c_ptr, c_int
         implicit none
@@ -32,7 +42,12 @@
         type(c_ptr),value :: stream
         end function fgets
 
-        function pclose(stream) bind(C,name='pclose')
+        function pclose(stream) &
+#ifdef _WIN32
+            bind(C,name='_pclose')
+#else
+            bind(C,name='pclose')
+#endif
         !! close a pipe stream to or from a process
         import :: c_ptr, c_int
         implicit none
